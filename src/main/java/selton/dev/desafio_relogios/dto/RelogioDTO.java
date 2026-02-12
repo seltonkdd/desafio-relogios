@@ -12,7 +12,7 @@ public record RelogioDTO(
     String tipoVidro,
     Integer resistenciaAguaM,
     Integer diametroMm,
-    Integer lugtoLugMm,
+    Integer lugToLugMm,
     Integer espessuraMm,
     Integer larguraLugMm,
     Long precoEmCentavos,

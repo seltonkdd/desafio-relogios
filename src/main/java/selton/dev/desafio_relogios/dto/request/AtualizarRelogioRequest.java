@@ -12,7 +12,7 @@ public record AtualizarRelogioRequest(
     @Size(max = 20) String tipoVidro,
     @Min(0) Integer resistenciaAguaM,
     @Min(5) Integer diametroMm,
-    @Min(10) Integer lugtoLugMm,
+    @Min(10) Integer lugToLugMm,
     @Min(5) Integer espessuraMm,
     @Min(10) Integer larguraLugMm,
     @Min(1) Long precoEmCentavos,

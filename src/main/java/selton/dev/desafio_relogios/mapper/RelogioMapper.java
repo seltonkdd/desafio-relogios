@@ -3,6 +3,7 @@ package selton.dev.desafio_relogios.mapper;
 import org.springframework.stereotype.Component;
 
 import selton.dev.desafio_relogios.dto.RelogioDTO;
+import selton.dev.desafio_relogios.dto.request.AtualizarRelogioRequest;
 import selton.dev.desafio_relogios.dto.request.CriarRelogioRequest;
 import selton.dev.desafio_relogios.model.Relogio;
 import selton.dev.desafio_relogios.model.enums.EtiquetaResistenciaAgua;
@@ -23,7 +24,7 @@ public class RelogioMapper {
         entity.setTipoVidro(TipoVidro.fromApi(request.tipoVidro()));
         entity.setResistenciaAguaM(request.resistenciaAguaM());
         entity.setDiametroMm(request.diametroMm());
-        entity.setLugToLugMm(request.lugtoLugMm());
+        entity.setLugToLugMm(request.lugToLugMm());
         entity.setEspessuraMm(request.espessuraMm());
         entity.setLarguraLugMm(request.larguraLugMm());
         entity.setPrecoEmCentavos(request.precoEmCentavos());
@@ -50,6 +51,34 @@ public class RelogioMapper {
             getEtiqueta(entity.getResistenciaAguaM()),
             getPontuacao(entity)
         );
+    }
+
+    public void atualizarFromDto(AtualizarRelogioRequest request, Relogio entity) {
+        entity.setMarca(request.marca() != null ? request.marca() : entity.getMarca());
+        entity.setModelo(request.modelo() != null ? request.modelo() : entity.getModelo());
+        entity.setReferencia(request.referencia() != null ? request.referencia() : entity.getReferencia());
+        entity.setTipoMovimento(
+            request.tipoMovimento() != null ? TipoMovimento.fromApi(request.tipoMovimento())
+            : entity.getTipoMovimento()
+        );
+        entity.setMaterialCaixa(
+            request.materialCaixa() != null ? MaterialCaixa.fromApi(request.materialCaixa())
+            : entity.getMaterialCaixa()
+        );
+        entity.setTipoVidro(
+            request.tipoVidro() != null ? TipoVidro.fromApi(request.tipoVidro())
+            : entity.getTipoVidro()
+        );
+        entity.setResistenciaAguaM(
+            request.resistenciaAguaM() != null ? request.resistenciaAguaM()
+            : entity.getResistenciaAguaM()
+        );
+        entity.setDiametroMm(request.diametroMm() != null ? request.diametroMm() : entity.getDiametroMm());
+        entity.setLugToLugMm(request.lugToLugMm() != null ? request.lugToLugMm() : entity.getLugToLugMm());
+        entity.setEspessuraMm(request.espessuraMm() != null ? request.espessuraMm() : entity.getEspessuraMm());
+        entity.setLarguraLugMm(request.larguraLugMm() != null ? request.larguraLugMm() : entity.getLarguraLugMm());
+        entity.setPrecoEmCentavos(request.precoEmCentavos() != null ? request.precoEmCentavos() : entity.getPrecoEmCentavos());
+        entity.setUrlImage(request.urlImagem() != null ? request.urlImagem() : entity.getUrlImage());
     }
 
     private String getEtiqueta(int valor) {
