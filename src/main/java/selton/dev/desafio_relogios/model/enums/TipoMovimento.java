@@ -14,7 +14,7 @@ public enum TipoMovimento {
             case "quartz" -> QUARTZ;
             case "automatic" -> AUTOMATICO;
             case "manual" -> MANUAL;
-            default -> throw new IllegalArgumentException("Tipo de movimento inválido " + valor);
+            default -> throw new IllegalArgumentException("Tipo de movimento inválido: " + valor);
         };
     }
 

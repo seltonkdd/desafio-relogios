@@ -15,6 +15,7 @@ import selton.dev.desafio_relogios.dto.RelogioDTO;
 import selton.dev.desafio_relogios.dto.request.AtualizarRelogioRequest;
 import selton.dev.desafio_relogios.dto.request.CriarRelogioRequest;
 import selton.dev.desafio_relogios.dto.response.ResponseDTO;
+import selton.dev.desafio_relogios.exception.custom.RelogioNaoEncontradoException;
 import selton.dev.desafio_relogios.mapper.RelogioMapper;
 import selton.dev.desafio_relogios.model.Relogio;
 import selton.dev.desafio_relogios.model.enums.MaterialCaixa;
@@ -41,19 +42,25 @@ public class RelogioService {
     }
 
     public RelogioDTO buscar(UUID id) {
-        Relogio relogio = repository.findById(id).orElseThrow();
+        Relogio relogio = repository.findById(id).orElseThrow(
+            () -> new RelogioNaoEncontradoException("Relógio não encontrado: " + id)
+        );
         return mapper.toDTO(relogio);
     }
 
     public RelogioDTO atualizar(UUID id, AtualizarRelogioRequest request) {
-        Relogio relogio = repository.findById(id).orElseThrow();
+        Relogio relogio = repository.findById(id).orElseThrow(
+            () -> new RelogioNaoEncontradoException("Relógio não encontrado: " + id)
+        );
         mapper.atualizarFromDto(request, relogio);
         relogio = repository.save(relogio);
         return mapper.toDTO(relogio);
     }
 
     public void deletar(UUID id) {
-        Relogio relogio = repository.findById(id).orElseThrow();
+        Relogio relogio = repository.findById(id).orElseThrow(
+            () -> new RelogioNaoEncontradoException("Relógio não encontrado: " + id)
+        );
         repository.delete(relogio);
     }
 

@@ -2,6 +2,7 @@ package selton.dev.desafio_relogios.dto.request;
 
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 public record CriarRelogioRequest(
@@ -11,12 +12,12 @@ public record CriarRelogioRequest(
     @NotBlank @Size(max = 20) String tipoMovimento,
     @NotBlank @Size(max = 20) String materialCaixa,
     @NotBlank @Size(max = 20) String tipoVidro,
-    @Min(0) Integer resistenciaAguaM,
-    @Min(5) Integer diametroMm,
-    @Min(10) Integer lugToLugMm,
-    @Min(5) Integer espessuraMm,
-    @Min(10) Integer larguraLugMm,
-    @Min(1) Long precoEmCentavos,
+    @NotNull @Min(0) Integer resistenciaAguaM,
+    @NotNull @Min(5) Integer diametroMm,
+    @NotNull @Min(10) Integer lugToLugMm,
+    @NotNull @Min(5) Integer espessuraMm,
+    @NotNull @Min(10) Integer larguraLugMm,
+    @NotNull @Min(1) Long precoEmCentavos,
     @NotBlank @Size(max = 600) String urlImagem
 ) {
     
